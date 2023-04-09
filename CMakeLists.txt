@@ -8,12 +8,19 @@ project(Example)
 # also enables the use of set_target_properties(... PROPERTIES FOLDER ...).
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
-# See https://cmake.org/cmake/help/latest/prop_tgt/CXX_STANDARD.html for a
-# list of C++ standard values.
+# See https://cmake.org/cmake/help/latest/prop_tgt/CXX_STANDARD.html
 set(CMAKE_CXX_STANDARD 17)
 
 # Enable multi-processor compilation
 add_compile_options(/MP)
 
-# Add the Application
+# Add the example application
 add_subdirectory(Application)
+
+# This command should be in the source directory root because Ctest expects to
+# find a test file in the build directory root.
+# See https://cmake.org/cmake/help/latest/command/enable_testing.html
+enable_testing()
+
+# Add the test runner
+add_subdirectory(Testing)
